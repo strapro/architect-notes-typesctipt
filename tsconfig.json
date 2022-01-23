@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "lib": ["es2019"],
+    "paths": {
+      "@architect/views/*": [ "./src/views/*" ],
+      "@architect/shared/*": ["./src/shared/*"] // This mapping is relative to "baseUrl"
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "rootDir": "src"
+}
