@@ -1,0 +1,22 @@
+# The @env pragma is synced (and overwritten) by running arc env
+@env
+testing 
+  PGUSER dbuser
+  PGHOST database.server.com
+  PGPASSWORD secretpassword
+  PGDATABASE mydb
+  PGPORT 3211
+
+staging
+  PGUSER dbuser
+  PGHOST database.server.com
+  PGPASSWORD secretpassword
+  PGDATABASE mydb
+  PGPORT 3211
+
+production
+  PGUSER dbuser
+  PGHOST database.server.com
+  PGPASSWORD secretpassword
+  PGDATABASE mydb
+  PGPORT 3211
