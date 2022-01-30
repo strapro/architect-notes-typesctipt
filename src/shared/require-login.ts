@@ -1,12 +1,14 @@
-import arc, { HttpRequest, HttpResponse } from '@architect/functions'
+import arc, { HttpRequest, HttpResponse } from '@architect/functions';
 
-export default async function requireLogin (req: HttpRequest): Promise<HttpResponse | undefined> {
+export default async function requireLogin(
+  req: HttpRequest
+): Promise<HttpResponse | undefined> {
   if (!req.session.person) {
-    return {    
+    return {
       statusCode: 302,
       headers: {
-        location: '/login'
-      }  
-    }
+        location: '/login',
+      },
+    };
   }
 }

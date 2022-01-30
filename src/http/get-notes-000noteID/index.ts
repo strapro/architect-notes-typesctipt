@@ -1,15 +1,15 @@
-import arc from '@architect/functions'
-import layout from '@architect/shared/layout'
-import requireLogin from '@architect/shared/require-login'
+import arc from '@architect/functions';
+import layout from '@architect/shared/layout';
+import requireLogin from '@architect/shared/require-login';
 
 // display a note
-let handler = arc.http.async(requireLogin, async function(req) {
-  let noteID = req.pathParameters.noteID
-  let email = req.session.person && req.session.person.email
-  let data = await arc.tables()
-  let note = await data.notes.get({noteID, email})
+const handler = arc.http.async(requireLogin, async function (req) {
+  const noteID = req.pathParameters.noteID;
+  const email = req.session.person && req.session.person.email;
+  const data = await arc.tables();
+  const note = await data.notes.get({ noteID, email });
 
-  let html = `
+  const html = `
     <article>
       <h2>Edit note</h2>
       <form action=/notes/${noteID} method=post>
@@ -36,11 +36,11 @@ let handler = arc.http.async(requireLogin, async function(req) {
         <button class="danger" type=submit>Delete</button>
       </form>
     </article>
-  `
+  `;
 
   return {
-    html: layout({contents: html})
-  }
-})
+    html: layout({ contents: html }),
+  };
+});
 
-export { handler }
+export { handler };

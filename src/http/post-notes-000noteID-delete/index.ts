@@ -1,18 +1,18 @@
-import arc from '@architect/functions'
-import requireLogin from '@architect/shared/require-login'
+import arc from '@architect/functions';
+import requireLogin from '@architect/shared/require-login';
 
-let handler = arc.http.async(requireLogin, async function(req) {
-  let data = await arc.tables()
+const handler = arc.http.async(requireLogin, async function (req) {
+  const data = await arc.tables();
   await data.notes.delete({
     noteID: req.pathParameters.noteID,
-    email: req.session.person.email
-  })
+    email: req.session.person.email,
+  });
   return {
     statusCode: 303,
     headers: {
-      location: '/notes'
-    }
-  }
-})
+      location: '/notes',
+    },
+  };
+});
 
-export { handler }
+export { handler };

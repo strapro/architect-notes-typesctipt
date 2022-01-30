@@ -1,21 +1,21 @@
-import arc from '@architect/functions'
-import bcrypt from 'bcrypt'
+import arc from '@architect/functions';
+import bcrypt from 'bcrypt';
 
 export default async function authenticatePerson(email, suppliedPassword) {
-  let data = await arc.tables()
-  let result = await data.people.query({
+  const data = await arc.tables();
+  const result = await data.people.query({
     KeyConditionExpression: 'email = :email',
     ExpressionAttributeValues: {
-      ':email': email
-    }
-  })
+      ':email': email,
+    },
+  });
   if (result.Items.length) {
-    let person = result.Items[0]
-    let authorized = await bcrypt.compare(suppliedPassword, person.password)
+    const person = result.Items[0];
+    const authorized = await bcrypt.compare(suppliedPassword, person.password);
     if (authorized) {
       // Remove the hashed password, as we don't want it in sessions (or anywhere else outside this module)
-      delete person.password
-      return person
+      delete person.password;
+      return person;
     }
   }
 }

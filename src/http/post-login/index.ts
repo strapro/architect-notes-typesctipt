@@ -1,25 +1,23 @@
-import arc from '@architect/functions'
-import verify from './verify-password'
+import arc from '@architect/functions';
+import verify from './verify-password';
 
-let handler = arc.http.async(async function(req) {
+const handler = arc.http.async(async function (req) {
+  const session: { attemptedEmail?: string; person?: { email: string } } = {};
+  const person = await verify(req.body.email, req.body.password);
 
-  let session: {attemptedEmail?: string, person?: {email: string}} = {}
-  let person = await verify(req.body.email, req.body.password)
-  
   if (!person) {
-    session.attemptedEmail = req.body.email
-  }
-  else {
-    session.person = person
+    session.attemptedEmail = req.body.email;
+  } else {
+    session.person = person;
   }
 
   return {
     session,
     statusCode: 303,
     headers: {
-      location: person? '/notes' : '/login'    
-    }
-  }
-})
+      location: person ? '/notes' : '/login',
+    },
+  };
+});
 
-export { handler }
+export { handler };

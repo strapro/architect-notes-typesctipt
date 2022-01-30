@@ -1,14 +1,14 @@
-import arc, { HttpResponse } from '@architect/functions'
+import arc from '@architect/functions';
 
 // logout clears the session and redirects home
-let handler = arc.http.async(async function() {  
+const handler = arc.http.async(async function () {
   return {
-    session: {},    
+    session: {},
     statusCode: 302,
     headers: {
-      location: '/'
-    }         
-  }
-})
+      location: '/',
+    },
+  };
+});
 
-export { handler }
+export { handler };

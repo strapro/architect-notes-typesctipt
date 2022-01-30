@@ -1,19 +1,18 @@
-import arc from '@architect/functions'
-import layout from '@architect/shared/layout'
+import arc from '@architect/functions';
+import layout from '@architect/shared/layout';
 
-let handler = arc.http.async(async function(req) {
-
+const handler = arc.http.async(async function (req) {
   // You're already logged in
   if (req.session.person) {
     return {
       statusCode: 303,
       headers: {
-        location: '/notes'
-      }
-    }
+        location: '/notes',
+      },
+    };
   }
 
-  var signupPage = `
+  const signupPage = `
     <body class="signup-page dark">
       <form class="signup" method="post" action=/signup>
       
@@ -43,11 +42,11 @@ let handler = arc.http.async(async function(req) {
 
       <a href=/login>Log in</a>
     </body>
-  `
+  `;
 
   return {
-    html: layout({contents: signupPage, showNav: false })
-  }
-})
+    html: layout({ contents: signupPage, showNav: false }),
+  };
+});
 
-export { handler }
+export { handler };

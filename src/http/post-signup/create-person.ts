@@ -1,10 +1,10 @@
-import arc from '@architect/functions'
-import bcrypt from 'bcrypt'
+import arc from '@architect/functions';
+import bcrypt from 'bcrypt';
 
-export default async function createPerson (email, suppliedPassword) {
-  let SALT_ROUNDS = 12
-  let hashedPassword = await bcrypt.hash(suppliedPassword, SALT_ROUNDS)
-  let data = await arc.tables()
-  
-  return data.people.put({email, password: hashedPassword})
+export default async function createPerson(email, suppliedPassword) {
+  const SALT_ROUNDS = 12;
+  const hashedPassword = await bcrypt.hash(suppliedPassword, SALT_ROUNDS);
+  const data = await arc.tables();
+
+  return data.people.put({ email, password: hashedPassword });
 }
