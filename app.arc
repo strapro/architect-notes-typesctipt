@@ -1,6 +1,11 @@
 @app
 notes
 
+@jwt
+issuer https://cognito-idp.us-west-2.amazonaws.com/us-west-2_5ENiX07Dz
+audience 2q96v3f39m0ep85ega1qhun1mr #Audience in the JWT
+identitySource $request.header.Authorization
+
 @shared
 src dist/shared
 
@@ -44,6 +49,9 @@ src dist/shared
 /notes/:noteID/delete
   method post
   src dist/http/post-notes-000noteID-delete
+
+@macros
+jwt-cognito
 
 @tables
 people
